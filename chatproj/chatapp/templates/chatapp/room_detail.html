@@ -1,0 +1,28 @@
+<!-- chatapp/templates/chatapp/room_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+</head>
+<body>
+    <h1>Room: {{ room.name }}</h1>
+    <div>
+        {% for message in messages %}
+            <p><strong>{{ message.user.username }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em></p>
+        {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

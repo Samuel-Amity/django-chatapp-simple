@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settings.py
+
+LOGIN_URL = '/login/'  # Set the login URL to redirect unauthorized users
+
+TIME_ZONE = 'Asia/Kolkata'
+
 
 # Application definition
 
@@ -106,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
 
 USE_I18N = True
 

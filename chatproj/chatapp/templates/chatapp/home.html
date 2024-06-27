@@ -1,0 +1,15 @@
+<!-- chatapp/templates/chatapp/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the Chat Application</title>
+</head>
+<body>
+    <h1>Welcome to the Chat Application</h1>
+    <a href="{% url 'room_list' %}">View Chat Rooms</a>
+    
+    {% if user.is_authenticated %}
+    <a href="{% url 'custom_logout' %}">Logout</a>
+    {% endif %}
+</body>
+</html>
