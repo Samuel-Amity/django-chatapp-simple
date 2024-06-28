@@ -1,15 +1,98 @@
-<!-- chatapp/templates/chatapp/home.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to the Chat Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <style>
+        body {
+            border-color: orange;  
+            border-width: 50px;  
+            border-style: inset;
+            height: auto;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h2 {  
+              
+            } 
+        .top-bar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .rules, .guide {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 45%;
+        }
+        .rules h3, .guide h3 {
+            margin-top: 0;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Chat Application</h1>
-    <a href="{% url 'room_list' %}">View Chat Rooms</a>
+    <div class="top-bar">
+        <div class="left-side">
+            <h2>Welcome to the Chat Application</h2>
+        </div>
+        <div class="right-side">
+            {% if user.is_authenticated %}
+            <a href="{% url 'custom_logout' %}" style="color:white;">Logout</a>
+            {% else %}
+            <a href="{% url 'custom_login' %}" style="color:white;">Login</a>
+            {% endif %}
+        </div>
+    </div>
     
-    {% if user.is_authenticated %}
-    <a href="{% url 'custom_logout' %}">Logout</a>
-    {% endif %}
+    <div class="container">
+        <div class="rules">
+            <h3>Rules</h3>
+            <p>1. Be respectful. This means no mean, rude, or harassing comments.</p>
+            <p>2. No inappropriate language.</p>
+            <p>3. No spamming.</p>
+            <p>4. No advertisements.</p>
+            <p>5. No Server raiding.</p>
+            <p>6. Threats are forbidden.</p>
+        </div>
+        
+        <div class="guide">
+            <h3>Guide</h3>
+            <p>This is a guide to using the chat application.</p>
+        </div>
+    </div>
+    
+    <div style="text-align:center; height: 500px;" >
+        <a class="btn" href="{% url 'room_list' %}">View Chat Rooms</a>
+        
+        {% if user.is_authenticated %}
+        <a class="btn" href="#">Create New Room</a> <!-- Example of another button -->
+        {% endif %}
+    </div>
+    {% comment %} <div><p><pre>                                                                           <br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br></pre></p></div> {% endcomment %}
+    <div></div>
 </body>
 </html>
