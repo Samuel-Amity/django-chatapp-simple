@@ -294,6 +294,8 @@ nav a:hover {
   margin-top: 2em;
 }
 
+
+
 .form-input label {
   font-family: Poppins;
   font-weight: normal;
@@ -525,88 +527,50 @@ textarea {
 }
 
 
-      .login-container {
-        background: #fff;
-        padding: 2em;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        width: 400px;
-        margin: 0 auto; /* Added line to center horizontally */
-        text-align: center;
-        height: 750px; 
-      }
+        .services-container {
+            padding: 10em 0;
+            background-color: #f0f0f0;
+        }
 
-.login-container h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.4rem;
-    margin-bottom: 1.5em;
-    color: #227cff;
-}
+        .services-title {
+            font-family: Poppins;
+            font-weight: 500;
+            font-size: 4.5rem;
+            line-height: 67px;
+            letter-spacing: 0.01em;
+            color: rgba(0, 0, 0, 0.75);
+        }
 
-.login-container input {
-    width: 100%;
-    padding: 1em;
-    margin-bottom: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.6rem;
-}
+        .service {
+            background: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2em;
+        }
 
-.login-container button {
-    width: 100%;
-    padding: 1em;
-    border: none;
-    border-radius: 5px;
-    background: #227cff;
-    color: #fff;
-    font-size: 1.6rem;
-    cursor: pointer;
-}
+        .service li{
+            font-size: 3rem;
+        }
 
-.login-container button:hover {
-    background: #1a5bbd;
-}
+        .service h2 {
+            font-family: Poppins, sans-serif;
+            font-size: 2.4rem;
+            color: #333;
+            margin-bottom: 1em;
+            width: 40%; /* Adjust width as needed */
+            margin-right: 5%; /* Adjust margin for spacing between tiers */
+        }
+        
+          
+      
 
-.login-container .signup-link {
-    margin-top: 1em;
-    display: block;
-    font-size: 1.4rem;
-    color: #227cff;
-    text-decoration: none;
-}
+        .service p {
+            font-size: 4.1rem;
+            color: #666;
+        }
 
-.login-container .signup-link:hover {
-    text-decoration: underline;
-}
 
-{% comment %}  {% endcomment %}
-
-.signup-link {
-    color: red;
-    font-weight: bold;
-}
-
-.additional-buttons {
-    margin-top: 1em;
-}
-
-.small-btn {
-    display: inline-block;
-    margin-right: 1em;
-    padding: 0.5em 1em;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: white;
-    background-color: #227cff;
-    border: 1px solid #227cff;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.small-btn:hover {
-    background-color: #fff;
-    color: #227cff;
-}
 </style>
   </head>
   <body>
@@ -633,87 +597,81 @@ textarea {
           </nav>
         </header>
 
-        
-      </div>
+
     </main>
 
+    <div align="center">
 
-    <div class="login-container" style="width: 60%; margin: 2em auto; display: flex; flex-direction: column; height: 80vh;">
-        <h1 style="font-size: 2.4rem; color: #227cff;">Room: {{ room.name }}</h1>
-        <div style="max-height: calc(100% - 150px); overflow-y: auto; flex: 1; margin-bottom: 2em;">
-            {% for message in messages %}
-            <div style="font-size: 2.6rem; color: #000; margin-bottom: 1em;">
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="display: flex; align-items: center;">
-                        <strong>{{ message.user.username }}:</strong>
-                    </div>
-                    <div style="font-size: 2.2rem; color: #666;">
-                        {{ message.timestamp }}
-                    </div>
+    
+        <div class="container">
+            <br><br><h1>Pricing</h1>
+            <div class="pricing">
+                <div class="service" style="background-color: #d4edda; width: 30%;">
+                    <h2>Basic</h2><br>
+                    <p>Free for all</p><br>
+                    
+                        <li>Send messages</li><br>
+                        <li>Create Account</li><br>
+                        <li>Create Room</li><br>
+                    <br>
+                    <a href="#" class="btn-primary">Active</a>
                 </div>
-                <div style="margin-left: 0.5em; padding-top: 0.5em;">
-                    {{ message.content }}
+                <div class="service" style="background-color: #cce5ff; width: 30%;">
+                    <h2>Standard</h2>
+                    <p>$10/month</p><br>
+                    
+                        <li>All in Free tier +</li><br>
+                        <li>Unlimited Messages</li><br>
+                        <li>Unlimited Rooms</li><br>
+                        <li>Unlimited Accounts</li><br>
+                    <br>
+                    <a href="#" class="btn-primary">Buy Now</a>
                 </div>
-                {% if request.user == message.user %}
-                <div style="margin-top: 0.5em;">
-                    <form method="post" action="{% url 'delete_message' room_name=room.name message_id=message.id %}">
-                        {% csrf_token %}
-                        <button type="submit" style="background: none; border: none; color: red; cursor: pointer;">Delete</button>
-                    </form>
+                <div class="service" style="background-color: #f8d7da; width: 30%;">
+                    <h2>Premium</h2><br>
+                    <p>$30/month</p><br>
+                    
+                        <li>All in Standard +</li><br>
+                        <li>Private Messaging</li><br>
+                        <li>Profile Updation</li><br>
+                        <li>Upload larger files</li><br>
+                        <li>Get Special Badge</li><br>
+                    <br>
+                    <a href="#" class="btn-primary">Buy Now</a>
                 </div>
-                {% endif %}
             </div>
-            {% endfor %}
         </div>
-        <form method="post" style="display: flex; align-items: center; margin-top: auto;">
-            {% csrf_token %}
-            <input type="text" name="content" placeholder="Type your message..." style="flex: 0 0 85%; margin-right: 1em; padding: 0.5em; font-size: 1.6rem;" required>
-            <button type="submit" style="flex: 0 0 15%; padding: 0.5em; border: none; border-radius: 5px; background: #227cff; color: #fff; font-size: 1.6rem; cursor: pointer;">Send</button>
-        </form>
-        <div class="additional-buttons" style="text-align: center; margin-top: 1em;">
-            <button class="small-btn" style="padding: 1em; border: none; border-radius: 5px; background: #227cff; color: #fff; font-size: 1.6rem; cursor: pointer;" ><a href =" {% url 'room_list' %}">GO Back</a></button>
-        </div>
+    
     </div>
     
-
     
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    
 
     <footer>
-          
-        <div class="bottom-section">
-          <div class="container">
-            <p>Copyright ChatApp Pvt. Ltd 2024 BY SAMUEL</p>
-  
-            <div class="social-icons">
-              <div class="fb-icon">
-                <img
-                  src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809888/Vector_ezpbdg.svg"
-                />
-              </div>
-              <div class="tw-icon">
-                <img
-                  src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809872/Vector_1_dygzgz.svg"
-                />
-              </div>
-              <div class="ig-icon">
-                <img
-                  src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809863/Vector_2_zutqj9.svg"
-                />
-              </div>
+
+      <div class="bottom-section">
+        <div class="container">
+          <p>Copyright ChatApp Pvt. Ltd 2024 BY SAMUEL</p>
+
+          <div class="social-icons">
+            <div class="fb-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809888/Vector_ezpbdg.svg"
+              />
+            </div>
+            <div class="tw-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809872/Vector_1_dygzgz.svg"
+              />
+            </div>
+            <div class="ig-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809863/Vector_2_zutqj9.svg"
+              />
             </div>
           </div>
         </div>
-      </footer>
-
-  
-
-</body>
-</html>
-
-</body>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -9,6 +9,15 @@ from .forms import MessageForm
 def home(request):
     return render(request, 'chatapp/home.html')
 
+def services(request):
+    return render(request, 'chatapp/services.html')
+
+def contact(request):
+    return render(request, 'chatapp/contact.html')
+
+def pricing(request):
+    return render(request, 'chatapp/pricing.html')
+
 def room_list(request):
     rooms = Room.objects.all()
     return render(request, 'chatapp/room_list.html', {'rooms': rooms})
@@ -19,26 +28,39 @@ from django.contrib import messages  # Import messages framework for displaying 
 from .models import Room, Message
 from .forms import MessageForm
 
-@login_required  # Ensure user is logged in to access this view
+@login_required
 def room_detail(request, room_name):
     room = get_object_or_404(Room, name=room_name)
-    room_messages = room.messages.order_by('timestamp')  # Rename queryset variable
+    room_messages = room.messages.order_by('timestamp')
 
     if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
-            message.user = request.user  # Assign the logged-in user to the message
+            message.user = request.user
             message.room = room
             message.save()
-            messages.success(request, 'Your message was posted successfully.')  # Display success message
+            messages.success(request, 'Your message was posted successfully.')
             return redirect('room_detail', room_name=room.name)
         else:
-            messages.error(request, 'Failed to post your message. Please try again.')  # Display error message
+            messages.error(request, 'Failed to post your message. Please try again.')
     else:
         form = MessageForm()
 
     return render(request, 'chatapp/room_detail.html', {'room': room, 'messages': room_messages, 'form': form})
+
+@login_required
+def delete_message(request, room_name, message_id):
+    message = get_object_or_404(Message, id=message_id)
+    
+    if request.method == 'POST' and request.user == message.user:
+        message.delete()
+        messages.success(request, 'Message deleted successfully.')
+    else:
+        messages.error(request, 'Failed to delete the message.')
+
+    return redirect('room_detail', room_name=room_name)
+
 
 @login_required  # Ensure user is logged in to access this view
 def room_new(request):

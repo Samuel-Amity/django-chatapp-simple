@@ -11,6 +11,9 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ['content']
+        widgets = {
+            'content': forms.TextInput(attrs={'style': 'width: 50%;', 'placeholder': 'Type your message...'}),
+        }
 
 # chatapp/forms.py
 

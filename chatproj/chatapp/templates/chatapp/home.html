@@ -1,98 +1,677 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Application</title>
-    <style>
-        body {
-            border-color: orange;  
-            border-width: 50px;  
-            border-style: inset;
-            height: auto;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        h2 {  
-              
-            } 
-        .top-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .container {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-        }
-        .rules, .guide {
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 20px;
-            width: 45%;
-        }
-        .rules h3, .guide h3 {
-            margin-top: 0;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="top-bar">
-        <div class="left-side">
-            <h2>Welcome to the Chat Application</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatApp</title>
+  <link rel="shortcut icon" type="image/jpg" href="{% static 'chatapp/images/logo-images.png' %}"/>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+img {
+  width: 100%;
+}
+
+.header-container {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+main {
+  background-color: #227cff;
+}
+
+/* header section */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.5em 0;
+  padding-top: 5em;
+}
+
+nav {
+  width: 50%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 1.9rem;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding-bottom: 1em;
+}
+
+nav a:hover {
+  border-bottom: 1.5px solid #fff;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 1em 1.5em;
+  font-weight: 600;
+}
+
+.btn:hover {
+  border-bottom: none;
+}
+
+/* hero section */
+
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 7em 0;
+}
+
+.hero-img {
+  width: 50%;
+}
+
+.hero-text {
+  width: 45%;
+  margin-top: 10em;
+}
+
+.title {
+  font-size: 7rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: Poppins;
+  line-height: 113.9%;
+}
+
+.subtitle {
+  margin-top: 1em;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 113.9%;
+  color: #ffffff;
+}
+
+.hero-action-btns {
+  display: flex;
+  margin-top: 8em;
+}
+
+.hero-action-btns div {
+  margin-right: 2em;
+}
+
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 113.9%;
+  border-radius: 42px;
+  padding: 1.2em 3em;
+  display: block;
+}
+
+.btn-primary {
+  background-color: #fff;
+  color: #227cff;
+  border: 1px solid #ffffff;
+}
+
+.btn-secondary {
+  border: 1px solid #ffffff;
+  color: #fff;
+  background: #227cff;
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  color: #227cff;
+}
+
+/* overview container */
+.overview {
+  padding: 10em 0;
+}
+
+.overview-title {
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 67px;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.overview-subtitle {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 167.5%;
+  color: rgba(0, 0, 0, 0.45);
+  width: 55%;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+
+.overview-img {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 5em;
+}
+
+/* pricing */
+
+.bg-blue {
+  background: #d9e3f1;
+}
+
+.pricing {
+  display: flex;
+  justify-content: space-between;
+  padding: 12em 4em;
+}
+
+.pricing-img {
+  width: 45%;
+}
+
+.pricing-text {
+  width: 40%;
+  margin-top: 3em;
+}
+
+.pricing-title {
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 4.3rem;
+  line-height: 142.5%;
+
+  color: #000000;
+}
+
+.pricing-subtitle {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 113.9%;
+  margin-top: 1em;
+  color: rgba(0, 0, 0, 0.64);
+}
+
+/* stars sections */
+.stars-div {
+  display: flex;
+  margin-top: 6em;
+}
+
+.stars-img {
+  margin-right: 2em;
+}
+
+.stars-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 136.9%;
+  /* or 23px */
+
+  color: rgba(0, 0, 0, 0.64);
+}
+
+/* footer */
+.top-section {
+  display: flex;
+  padding: 8em 0;
+  justify-content: space-between;
+}
+
+.foot-logo {
+  width: 20%;
+}
+
+.foot-logo img {
+  width: 15em;
+}
+
+.foot-logo p {
+  margin-top: 1.5em;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 150.9%;
+
+  color: rgba(0, 0, 0, 0.45);
+}
+/* .foot-logo {
+  width: 8%;
+} */
+
+.contact-section {
+  width: 35%;
+}
+
+.contact-section h2 {
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 2.6rem;
+  line-height: 39px;
+  color: rgba(0, 0, 0, 0.56);
+  text-align: center;
+}
+
+.form-input {
+  margin-top: 2em;
+}
+
+.form-input label {
+  font-family: Poppins;
+  font-weight: normal;
+  font-size: 1.7rem;
+  line-height: 25px;
+
+  color: rgba(0, 0, 0, 0.64);
+}
+
+.contact-section input,
+textarea {
+  background: #1d73f1;
+  border: none;
+  border-radius: 10px;
+  height: 3em;
+  padding: 1em;
+  outline: none;
+  margin-top: 0.8em;
+  width: 100%;
+}
+
+textarea {
+  height: auto;
+  width: 100%;
+}
+
+.submit-div {
+  margin-top: 2em;
+}
+
+.submit-btn {
+  background-color: #fff;
+  color: #227cff;
+  border: 1px solid #227cff;
+  padding: 1em 5em;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* bottom section */
+.bottom-section {
+  background: #1d73f1;
+  padding: 3em 0;
+}
+
+.bottom-section > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-section p {
+  text-align: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 164.3%;
+
+  letter-spacing: 0.08em;
+
+  color: #ffffff;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 1200px) {
+  .hero-section {
+    padding-top: 2em;
+  }
+
+  .title {
+    font-size: 5rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 1.2rem;
+    padding: 1.2em;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  nav {
+    display: none;
+  }
+
+  .hero-section {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .hero-text {
+    width: 60%;
+    text-align: center;
+    margin-top: 5rem;
+  }
+
+  .hero-img {
+    width: 60%;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hero-action-btns {
+    justify-content: center;
+    margin-top: 5em;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-action-btns div {
+    margin-right: 0;
+    margin-bottom: 1.5em;
+    width: 70%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 1.2em 4em;
+  }
+
+  .overview-title {
+    font-size: 2.5rem;
+  }
+
+  .overview-subtitle {
+    margin-top: initial;
+    font-size: 1.5rem;
+    width: initial;
+  }
+
+  .pricing {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-img {
+    width: 55%;
+  }
+
+  .pricing-text {
+    width: inherit;
+    text-align: center;
+  }
+
+  .pricing-title {
+    font-size: 2.5rem;
+  }
+  .pricing-subtitle {
+    font-size: 1.5rem;
+    /* margin-top: initial; */
+  }
+
+  .stars-div {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stars-img {
+    margin-right: initial;
+    width: 50%;
+  }
+
+  .stars-text {
+    font-size: 1.5rem;
+    margin-top: 1em;
+  }
+
+  .bottom-section > div {
+    flex-direction: column-reverse;
+  }
+
+  .social-icons {
+    margin-bottom: 2em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-text {
+    width: 100%;
+  }
+
+  .overview {
+    padding: 5em 0;
+  }
+
+  .pricing {
+    padding: 6em 2em;
+  }
+
+  .pricing-img {
+    width: 75%;
+  }
+
+  .pricing-text {
+    width: 100%;
+  }
+
+  .social-icons {
+    width: 50%;
+  }
+
+  .top-section {
+    flex-direction: column;
+  }
+
+  .foot-logo {
+    width: initial;
+  }
+
+  .contact-section {
+    margin-top: 5em;
+    width: 100%;
+  }
+}
+</style>
+  </head>
+  <body>
+    <main>
+      <div class="header-container">
+        <header>
+          <div class="logo">
+            <img width="50" height="50" src="{% static 'chatapp/images/logo-images.png' %}" >
+          </div>
+
+          <nav>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'services' %}">Services</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+              <li><a href="{% url 'pricing' %}">Pricing</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'custom_logout' %}" class="btn" style="color:white;">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'custom_login' %}" class="btn">Login</a></li>
+                {% endif %}
+            
+            </ul>
+          </nav>
+        </header>
+
+        <div class="hero-section container">
+          <div class="hero-text">
+            <h1 class="title">The best professional chat platform</h1>
+            <h4 class="subtitle">Fast easy and unlimited chat and collaboration service</h4>
+
+            <div class="hero-action-btns">
+                <div><a class="btn-primary" href="{% url 'room_list' %}">View Rooms</a></div>
+                <div>{% if user.is_authenticated %}
+                    <div><a class="btn-primary" href="{% url 'room_new' %}">Create New Room</a></div>
+                    {% else %}
+                    <div><a class="btn-primary" href="{% url 'contact' %}">Errors? - Contact Us</a></div>
+                    {% endif %}</div>
+                
+              </div>
+          </div>
+
+          <div class="hero-img">
+            <img src="{% static 'chatapp/images/chat-app-hero.png' %}" />
+          </div>
         </div>
-        <div class="right-side">
-            {% if user.is_authenticated %}
-            <a href="{% url 'custom_logout' %}" style="color:white;">Logout</a>
-            {% else %}
-            <a href="{% url 'custom_login' %}" style="color:white;">Login</a>
-            {% endif %}
-        </div>
+      </div>
+    </main>
+
+    <div class="overview container">
+      <h2 class="overview-title txt-center">Instant Team Chats</h2>
+      <p class="overview-subtitle txt-center">
+        The point of creating this platform is that it has a more-or-less normal
+        distribution of messages, as opposed to using  watsapp where its all mised up , making it difficult to not miss updates.
+      </p>
+
+      <div class="overview-img">
+        <img src="{% static 'chatapp/images/chat-app-dashboard.png' %}" />
+      </div>
     </div>
-    
-    <div class="container">
-        <div class="rules">
-            <h3>Rules</h3>
-            <p>1. Be respectful. This means no mean, rude, or harassing comments.</p>
-            <p>2. No inappropriate language.</p>
-            <p>3. No spamming.</p>
-            <p>4. No advertisements.</p>
-            <p>5. No Server raiding.</p>
-            <p>6. Threats are forbidden.</p>
+
+    <div class="bg-blue">
+      <div class="pricing container">
+        <div class="pricing-img">
+          <img src="{% static 'chatapp/images/chat-app-product.png' %}" />
         </div>
-        
-        <div class="guide">
-            <h3>Guide</h3>
-            <p>This is a guide to using the chat application.</p>
+
+        <div class="pricing-text">
+          <h2 class="pricing-title">Perfect Solution for Small Business</h2>
+          <p class="pricing-subtitle">Pricing plans that fit like a glove.</p>
+          <div class="hero-action-btns">
+            <div><a href="#" class="btn-secondary">Get Started</a></div>
+            <div><a href="#" class="btn-primary">Get a demo</a></div>
+          </div>
+
+          <div class="stars-div">
+            <div class="stars-img">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591804764/Stars_sodqgz.svg"
+              />
+            </div>
+            <div class="stars-text">
+              <p>
+                <strong>More than 3 million </strong>users has given 5-star
+                rating
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    
-    <div style="text-align:center; height: 500px;" >
-        <a class="btn" href="{% url 'room_list' %}">View Chat Rooms</a>
-        
-        {% if user.is_authenticated %}
-        <a class="btn" href="#">Create New Room</a> <!-- Example of another button -->
-        {% endif %}
-    </div>
-    {% comment %} <div><p><pre>                                                                           <br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br><br>                              <br></pre></p></div> {% endcomment %}
-    <div></div>
-</body>
+
+    <footer>
+      <div class="top-section container">
+        <div class="foot-logo">
+          <img src="{% static 'chatapp/images/logo-images.png' %}" />
+          <p>The only chat app your team will ever need</p>
+        </div>
+        <div class="footer-links"></div>
+
+        <div class="contact-section">
+          <h2>Contact Us</h2>
+
+          <form>
+            <div class="form-input">
+              <label for="name">Name*:</label> <br />
+
+              <input type="text" id="name" required />
+            </div>
+            <div class="form-input">
+              <label for="email">Email*:</label> <br />
+
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-input">
+              <label for="message">Message*:</label> <br />
+
+              <textarea id="message" cols="15"></textarea>
+            </div>
+            <div class="submit-div">
+              <button type="submit" class="submit-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="bottom-section">
+        <div class="container">
+          <p>Copyright ChatApp Pvt. Ltd 2024 BY SAMUEL</p>
+
+          <div class="social-icons">
+            <div class="fb-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809888/Vector_ezpbdg.svg"
+              />
+            </div>
+            <div class="tw-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809872/Vector_1_dygzgz.svg"
+              />
+            </div>
+            <div class="ig-icon">
+              <img
+                src="https://res.cloudinary.com/dyvivj6d5/image/upload/v1591809863/Vector_2_zutqj9.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
